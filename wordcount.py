@@ -25,7 +25,7 @@ should return a dictionary with words as keys, and their counts as values.
 
 # Your name, plus anyone who helped you with this assignment
 # Give credit where credit is due.
-__author__ = "Amanda Simmons, Pete Mayor"
+__author__ = "Amanda Simmons, Pete Mayor, Jonny Sueck, and Daniel Lomelino"
 
 import sys
 
@@ -38,35 +38,38 @@ def create_word_dict(filename):
         formatted_lst = []
         final_word_lst = []
         for line in file_content_lst:
-            line = line.strip('\n')
+            line = line.lower().strip('\n')
             formatted_lst.append(line)
         for line in formatted_lst:
             words = line.split()
             final_word_lst.extend(words)
         count_dict = {}
-        # split_words = file_content_lst.split(' ')
         for word in final_word_lst:
             if word in count_dict:
                 count_dict[word] += 1
             else:
                 count_dict[word] = 1
-            # word_count = final_word_lst.count(word)
         return count_dict
-    # return word_count
 
 
 def print_words(filename):
     """Prints one per line '<word> : <count>', sorted
     by word for the given file.
     """
-    # Your code here
-    return
+    print_dict = create_word_dict(filename)
+    for word in print_dict:
+        print(word)
+    return print_dict
 
 
 def print_top(filename):
     """Prints the top count listing for the given file."""
-    # Your code here
-    return
+    print_dict = create_word_dict(filename)
+    sorted_list = sorted(print_dict.items(), key=lambda t: t[1], reverse=True)
+    for t in sorted_list[:20]:
+        print(f'{t[0]} : {t[1]}')
+
+
 
 
 # This basic command line argument parsing code is provided and calls
