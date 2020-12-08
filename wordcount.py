@@ -34,17 +34,10 @@ def create_word_dict(filename):
     """Returns a word/count dict for the given file."""
 
     with open(filename, 'r') as f:
-        file_content_lst = f.readlines()
-        formatted_lst = []
-        final_word_lst = []
-        for line in file_content_lst:
-            line = line.lower().strip('\n')
-            formatted_lst.append(line)
-        for line in formatted_lst:
-            words = line.split()
-            final_word_lst.extend(words)
+        final_word_lst = f.read().split()
         count_dict = {}
         for word in final_word_lst:
+            word = word.lower()
             if word in count_dict:
                 count_dict[word] += 1
             else:
